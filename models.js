@@ -31,5 +31,5 @@ var stageSchema = new Schema({
 
 mongoose.connect('mongodb://localhost:27017/StageITdb');
 module.exports = mongoose.model('user', userSchema);
-module.exports = mongoose.model('trofei', trofeiSchema);
+module.exports = mongoose.model('trophy', trofeiSchema);
 module.exports = mongoose.model('stage', stageSchema);

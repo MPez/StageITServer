@@ -8,16 +8,25 @@ var models = require('../models');
 var stageModel = mongoose.model('stage');
 
 router.get('/', function (req, res, next) {
-    stageModel.find({}, function (err, stageList) {
+    stageModel.find({}, null, {sort: '_id'}, function (err, stageList) {
         if(err) {
             console.error(err.stack);
         }
-        console.log(stageList);
-        obj = '{"stage":[' + stageList + ']}';
-        res.send(obj);
+        //obj = '{"stage":[' + stageList + ']}';
+        res.send(stageList);
     });
 } );
 
+
+router.get('/list', function (req, res, next) {
+    stageModel.find({}, null, {sort: '_id'}, function (err, stageList) {
+        if(err) {
+            console.error(err.stack);
+        }
+        //obj = '{"stage":[' + stageList + ']}';
+        res.send(stageList);
+    });
+} );
 
 
 router.get('/:id', function (req, res, next) {
