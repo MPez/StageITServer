@@ -11,7 +11,14 @@ var userSchema = new Schema({
     cognome : String,
     email : String,
     password : String,
-    stage_id : [],
+    stage_id_start : [{
+        stage_id : String,
+        time : Date
+    }],
+    stage_id_end : [{
+        stage_id : String,
+        time : Date
+    }],
     trofei_id : []
 });
 
