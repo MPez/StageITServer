@@ -6,17 +6,16 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
-    _id : String,
     nome : String,
     cognome : String,
     email : String,
     password : String,
     stage_id_start : [{
-        stage_id : String,
+        stage_id : {type: String, unique: true},
         time : Date
     }],
     stage_id_end : [{
-        stage_id : String,
+        stage_id : {type: String, unique: true},
         time : Date
     }],
     trofei_id : []
