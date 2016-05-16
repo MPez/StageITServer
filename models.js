@@ -8,17 +8,19 @@ var Schema = mongoose.Schema;
 var userSchema = new Schema({
     nome : String,
     cognome : String,
-    email : String,
+    email : {type: String, unique: true, index: true},
     password : String,
     stage_id_start : [{
-        stage_id : {type: String, unique: true},
+        stage_id : String,
         time : Date
     }],
     stage_id_end : [{
-        stage_id : {type: String, unique: true},
+        stage_id : String,
         time : Date
     }],
     trofei_id : []
+}, {
+    versionKey: false
 });
 
 var trofeiSchema = new Schema({
