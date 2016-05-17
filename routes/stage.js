@@ -15,8 +15,58 @@ router.get('/', function (req, res, next) {
         //obj = '{"stage":[' + stageList + ']}';
         res.send(stageList);
     });
-} );
+});
 
+
+router.get('/A..Z', function (req, res, next) {
+    stageModel.find({}, null, {sort: 'azienda'}, function (err, stageList) {
+        if(err) {
+            console.error(err.stack);
+        }
+        //obj = '{"stage":[' + stageList + ']}';
+        res.send(stageList);
+    });
+});
+
+router.get('/Z..A', function (req, res, next) {
+    stageModel.find({}, null, {sort: '-azienda'}, function (err, stageList) {
+        if(err) {
+            console.error(err.stack);
+        }
+        //obj = '{"stage":[' + stageList + ']}';
+        res.send(stageList);
+    });
+});
+
+router.get('/00:00..24:00', function (req, res, next) {
+    stageModel.find({}, null, {sort: 'nome'}, function (err, stageList) {
+        if(err) {
+            console.error(err.stack);
+        }
+        //obj = '{"stage":[' + stageList + ']}';
+        res.send(stageList);
+    });
+});
+
+router.get('/24:00..00:00', function (req, res, next) {
+    stageModel.find({}, null, {sort: '-nome'}, function (err, stageList) {
+        if(err) {
+            console.error(err.stack);
+        }
+        //obj = '{"stage":[' + stageList + ']}';
+        res.send(stageList);
+    });
+});
+
+router.get('/Svolti', function (req, res, next) {
+    stageModel.find({}, null, {sort: '_id'}, function (err, stageList) {
+        if(err) {
+            console.error(err.stack);
+        }
+        //obj = '{"stage":[' + stageList + ']}';
+        res.send(stageList);
+    });
+});
 
 router.get('/list', function (req, res, next) {
     stageModel.find({}, null, {sort: '_id'}, function (err, stageList) {

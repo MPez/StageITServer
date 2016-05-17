@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a2321769-dcb5-4c9c-a3bf-e112b0b796b6" name="Default" comment="registrazione nuovo ute">
+    <list default="true" id="a2321769-dcb5-4c9c-a3bf-e112b0b796b6" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models.js" afterPath="$PROJECT_DIR$/models.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/user.js" afterPath="$PROJECT_DIR$/routes/user.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/stage.js" afterPath="$PROJECT_DIR$/routes/stage.js" />
     </list>
     <ignored path="StageITServer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,10 +28,10 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="user.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="user.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/routes/user.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="675">
+                <state relative-caret-position="1455">
                   <caret line="97" column="49" selection-start-line="97" selection-start-column="49" selection-end-line="97" selection-end-column="49" />
                   <folding />
                 </state>
@@ -51,15 +50,11 @@
               </provider>
             </entry>
           </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="stage.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="stage.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/routes/stage.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="270">
-                  <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+                <state relative-caret-position="210">
+                  <caret line="61" column="39" selection-start-line="61" selection-start-column="39" selection-end-line="61" selection-end-column="39" />
                   <folding>
                     <element signature="e#0#40#0" expanded="false" />
                   </folding>
@@ -67,6 +62,10 @@
               </provider>
             </entry>
           </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="models.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/models.js">
               <provider selected="true" editor-type-id="text-editor">
@@ -143,9 +142,9 @@
         <option value="$PROJECT_DIR$/models/trophies.js" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/routes/trophy.js" />
-        <option value="$PROJECT_DIR$/routes/stage.js" />
         <option value="$PROJECT_DIR$/models.js" />
         <option value="$PROJECT_DIR$/routes/user.js" />
+        <option value="$PROJECT_DIR$/routes/stage.js" />
       </list>
     </option>
   </component>
@@ -656,7 +655,7 @@
       <workItem from="1463057787158" duration="15060000" />
       <workItem from="1463222480464" duration="5375000" />
       <workItem from="1463303493032" duration="15542000" />
-      <workItem from="1463395451209" duration="3936000" />
+      <workItem from="1463395451209" duration="10641000" />
     </task>
     <task id="LOCAL-00001" summary="route trofei funzionante">
       <created>1462967721500</created>
@@ -679,11 +678,18 @@
       <option name="project" value="LOCAL" />
       <updated>1463344917652</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="registrazione nuovo utente e registrazione stage funzionante">
+      <created>1463400528100</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1463400528100</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="97084000" />
+    <option name="totallyTimeSpent" value="103789000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1600" height="855" extended-state="6" />
@@ -732,7 +738,8 @@
     <MESSAGE value="route trofei funzionante" />
     <MESSAGE value="route registra e termina stage" />
     <MESSAGE value="route registra utente" />
-    <option name="LAST_COMMIT_MESSAGE" value="route registra utente" />
+    <MESSAGE value="registrazione nuovo utente e registrazione stage funzionante" />
+    <option name="LAST_COMMIT_MESSAGE" value="registrazione nuovo utente e registrazione stage funzionante" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1068,13 +1075,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/stage.js">
+    <entry file="file://$PROJECT_DIR$/routes/user.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#40#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="1455">
+          <caret line="97" column="49" selection-start-line="97" selection-start-column="49" selection-end-line="97" selection-end-column="49" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1088,11 +1093,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/user.js">
+    <entry file="file://$PROJECT_DIR$/routes/stage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="97" column="49" selection-start-line="97" selection-start-column="49" selection-end-line="97" selection-end-column="49" />
-          <folding />
+        <state relative-caret-position="210">
+          <caret line="61" column="39" selection-start-line="61" selection-start-column="39" selection-end-line="61" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#40#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
