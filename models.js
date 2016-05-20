@@ -34,7 +34,8 @@ var stageSchema = new Schema({
     _id : String,
     nome : String,
     azienda : String,
-    descrizione : String
+    descrizione : String,
+    coda : Number
 });
 
 mongoose.connect('mongodb://localhost:27017/StageITdb');

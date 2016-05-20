@@ -4,66 +4,76 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
+var moment = require('moment');
+
 var models = require('../models');
 var stageModel = mongoose.model('stage');
+var userModel = mongoose.model('user');
 
 router.get('/', function (req, res, next) {
     stageModel.find({}, null, {sort: '_id'}, function (err, stageList) {
         if(err) {
             console.error(err.stack);
         }
-        //obj = '{"stage":[' + stageList + ']}';
         res.send(stageList);
     });
 });
 
 
-router.get('/A..Z', function (req, res, next) {
+router.get('/:email/A..Z', function (req, res, next) {
     stageModel.find({}, null, {sort: 'azienda'}, function (err, stageList) {
         if(err) {
             console.error(err.stack);
         }
-        //obj = '{"stage":[' + stageList + ']}';
         res.send(stageList);
     });
 });
 
-router.get('/Z..A', function (req, res, next) {
+router.get('/:email/Z..A', function (req, res, next) {
     stageModel.find({}, null, {sort: '-azienda'}, function (err, stageList) {
         if(err) {
             console.error(err.stack);
         }
-        //obj = '{"stage":[' + stageList + ']}';
         res.send(stageList);
     });
 });
 
-router.get('/00:00..24:00', function (req, res, next) {
-    stageModel.find({}, null, {sort: 'nome'}, function (err, stageList) {
+router.get('/:email/00..24', function (req, res, next) {
+    stageModel.find({}, null, {sort: 'coda'}, function (err, stageList) {
         if(err) {
             console.error(err.stack);
         }
-        //obj = '{"stage":[' + stageList + ']}';
         res.send(stageList);
     });
 });
 
-router.get('/24:00..00:00', function (req, res, next) {
-    stageModel.find({}, null, {sort: '-nome'}, function (err, stageList) {
+router.get('/:email/24..00', function (req, res, next) {
+    stageModel.find({}, null, {sort: '-coda'}, function (err, stageList) {
         if(err) {
             console.error(err.stack);
         }
-        //obj = '{"stage":[' + stageList + ']}';
         res.send(stageList);
     });
 });
 
-router.get('/Svolti', function (req, res, next) {
+router.get('/:email/Done', function (req, res, next) {
+    userModel.findOne({email:req.params.email}, 'stage_id_end.stage_id', function (err, stage_list) {
+        console.log(stage_list);
+    });
+
     stageModel.find({}, null, {sort: '_id'}, function (err, stageList) {
         if(err) {
             console.error(err.stack);
         }
-        //obj = '{"stage":[' + stageList + ']}';
+        res.send(stageList);
+    });
+});
+
+router.get('/:email/To-do', function (req, res, next) {
+    stageModel.find({}, null, {sort: '-_id'}, function (err, stageList) {
+        if(err) {
+            console.error(err.stack);
+        }
         res.send(stageList);
     });
 });
@@ -73,7 +83,6 @@ router.get('/list', function (req, res, next) {
         if(err) {
             console.error(err.stack);
         }
-        //obj = '{"stage":[' + stageList + ']}';
         res.send(stageList);
     });
 } );

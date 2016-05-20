@@ -3,6 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var models = require('../models');
 var userModel = mongoose.model('user');
+var stageModel = mongoose.model('stage');
 
 /* GET users listing. */
 router.post('/', function(req, res, next) {
@@ -73,16 +74,25 @@ router.post('/:email/stage/inizia', function (req, res, next) {
                         if(err) {
                             console.error(err.stack);
                         }
+                        stageModel.findOneAndUpdate({_id:req.body.stage_id},
+                            {$inc: {coda: 1}}, function (err, stage) {
+                                if(err) {
+                                    console.error(err.stack);
+                                }
+                            });
+                        console.log("stage iniziato");
                         res.send("stage iniziato");
                     });
+
             } else {
+                console.log("stage presente");
                 res.send("stage presente");
             }
         });
 });
 
 router.post('/:email/stage/termina', function (req, res, next) {
-    userModel.findOne({email:req.params.email, 'stage_id_start.stage_id': req.body.stage_id},
+    userModel.findOne({email:req.params.email, 'stage_id_end.stage_id': req.body.stage_id},
         function (err, user) {
             if (err) {
                 console.error(err.stack);
@@ -95,9 +105,18 @@ router.post('/:email/stage/termina', function (req, res, next) {
                         if (err) {
                             console.error(err.stack);
                         }
+                        stageModel.findOneAndUpdate({_id:req.body.stage_id},
+                            {$inc: {coda: -1}}, function (err, stage) {
+                                if(err) {
+                                    console.error(err.stack);
+                                }
+                            });
+                        console.log("stage terminato");
                         res.send("stage terminato");
                     });
+
             } else {
+                console.log("stage presente");
                 res.send("stage presente");
             }
         });
