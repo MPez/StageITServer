@@ -51,6 +51,28 @@ router.post('/registra', function (req, res, next) {
     });
 });
 
+router.get('/rank', function (req, res, next) {
+    userModel.aggregate([ {"$project": {
+        "nome":1,
+        "cognome":1,
+        "stage_id_end":1,
+        "size": {"$size":"$stage_id_end"}
+    }},
+        {"$sort": {"size": -1}},
+        {"$project":{
+            "nome":1,
+            "cognome":1,
+            "stage_id_end":1
+        }}], function (err, userList) {
+        if(err) {
+            console.err(err.stack);
+        } else {
+            console.log(userList);
+            res.send(userList);
+        }
+    });
+});
+
 router.get('/:email', function(req, res, next) {
     userModel.findOne({email:req.params.email}, '-password', function (err, user) {
         if(err) {

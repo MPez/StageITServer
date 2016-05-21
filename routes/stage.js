@@ -19,6 +19,15 @@ router.get('/', function (req, res, next) {
     });
 });
 
+router.get('/', function (req, res, next) {
+    stageModel.find({}, null, {sort: '_id'}, function (err, stageList) {
+        if(err) {
+            console.error(err.stack);
+        }
+        res.send(stageList);
+    });
+});
+
 
 router.get('/:email/A..Z', function (req, res, next) {
     stageModel.find({}, null, {sort: 'azienda'}, function (err, stageList) {
