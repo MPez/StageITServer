@@ -55,6 +55,7 @@ router.get('/rank', function (req, res, next) {
     userModel.aggregate([ {"$project": {
         "nome":1,
         "cognome":1,
+        "email":1,
         "stage_id_end":1,
         "size": {"$size":"$stage_id_end"}
     }},
@@ -62,12 +63,12 @@ router.get('/rank', function (req, res, next) {
         {"$project":{
             "nome":1,
             "cognome":1,
+            "email":1,
             "stage_id_end":1
         }}], function (err, userList) {
         if(err) {
             console.err(err.stack);
         } else {
-            console.log(userList);
             res.send(userList);
         }
     });
@@ -142,6 +143,18 @@ router.post('/:email/stage/termina', function (req, res, next) {
                 res.send("stage presente");
             }
         });
+});
+
+router.post('/:email/trofeo/aggiungi', function (req, res, next) {
+    userModel.findOneAndUpdate({email:req.params.email},
+        {$addToSet: {trofei_id: req.body.trofeo_id}},
+        {fields: '-password', new: 'true'},
+        function (err, user) {
+        if(err) {
+            console.error(err.stack);
+        }
+        res.send("trofeo aggiunto");
+    });
 });
 
 module.exports = router;
