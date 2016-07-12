@@ -67,7 +67,7 @@ router.get('/rank', function (req, res, next) {
             "stage_id_end":1
         }}], function (err, userList) {
         if(err) {
-            console.err(err.stack);
+            console.error(err.stack);
         } else {
             res.send(userList);
         }
