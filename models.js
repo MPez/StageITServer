@@ -18,7 +18,8 @@ var userSchema = new Schema({
         stage_id : String,
         time : Date
     }],
-    trofei_id : []
+    trofei_id : [],
+    stage_done : Number
 }, {
     versionKey: false
 });

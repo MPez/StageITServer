@@ -52,26 +52,33 @@ router.post('/registra', function (req, res, next) {
 });
 
 router.get('/rank', function (req, res, next) {
-    userModel.aggregate([ {"$project": {
-        "nome":1,
-        "cognome":1,
-        "email":1,
-        "stage_id_end":1,
-        "size": {"$size":"$stage_id_end"}
-    }},
-        {"$sort": {"size": -1}},
-        {"$project":{
-            "nome":1,
-            "cognome":1,
-            "email":1,
-            "stage_id_end":1
-        }}], function (err, userList) {
+    userModel.find({}, null, {sort: '-stage_done'}, function (err, userList) {
         if(err) {
             console.error(err.stack);
-        } else {
-            res.send(userList);
         }
+        res.send(userList);
     });
+
+    // userModel.aggregate([ {"$project": {
+    //     "nome":1,
+    //     "cognome":1,
+    //     "email":1,
+    //     "stage_id_end":1,
+    //     "size": {"$size":"$stage_id_end"}
+    // }},
+    //     {"$sort": {"size": -1}},
+    //     {"$project":{
+    //         "nome":1,
+    //         "cognome":1,
+    //         "email":1,
+    //         "stage_id_end":1
+    //     }}], function (err, userList) {
+    //     if(err) {
+    //         console.error(err.stack);
+    //     } else {
+    //         res.send(userList);
+    //     }
+    // });
 });
 
 router.get('/:email', function(req, res, next) {
@@ -122,7 +129,8 @@ router.post('/:email/stage/termina', function (req, res, next) {
             }
             if (user == null) {
                 userModel.findOneAndUpdate({email: req.params.email},
-                    {$push: {stage_id_end: {stage_id: req.body.stage_id, time: new Date()}}},
+                    {$push: {stage_id_end: {stage_id: req.body.stage_id, time: new Date()}},
+                        $inc: {stage_done: 1}},
                     {fields: '-password', new: 'true'},
                     function (err, user) {
                         if (err) {
