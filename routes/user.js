@@ -1,3 +1,10 @@
+/**
+ * StageITRun
+ * Progetto per insegnamento Reti Wireless
+ * @since Anno accademico 2015/2016
+ * @author Pezzutti Marco 1084411
+ */
+
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
@@ -5,7 +12,10 @@ var models = require('../models');
 var userModel = mongoose.model('user');
 var stageModel = mongoose.model('stage');
 
-/* GET users listing. */
+/**
+ * Cerca se l'utente esiste, controlla se la password è corretta e ritorna success.
+ * Se la password è sbagliata ritorna failure, e se l'utente non esiste ritorna not found.
+ */
 router.post('/', function(req, res, next) {
     userModel.findOne({email:req.body.email}, function (err, user) {
         if (err) {
@@ -27,6 +37,9 @@ router.post('/', function(req, res, next) {
     });
 });
 
+/**
+ * Registra un nuovo utente
+ */
 router.post('/registra', function (req, res, next) {
     var newUser = new userModel({
         nome: req.body.nome,
@@ -51,6 +64,9 @@ router.post('/registra', function (req, res, next) {
     });
 });
 
+/**
+ * Ritorna la classifica ordinata per numero di stage effettuati descrescente
+ */
 router.get('/rank', function (req, res, next) {
     userModel.find({}, null, {sort: '-stage_done'}, function (err, userList) {
         if(err) {
@@ -58,29 +74,11 @@ router.get('/rank', function (req, res, next) {
         }
         res.send(userList);
     });
-
-    // userModel.aggregate([ {"$project": {
-    //     "nome":1,
-    //     "cognome":1,
-    //     "email":1,
-    //     "stage_id_end":1,
-    //     "size": {"$size":"$stage_id_end"}
-    // }},
-    //     {"$sort": {"size": -1}},
-    //     {"$project":{
-    //         "nome":1,
-    //         "cognome":1,
-    //         "email":1,
-    //         "stage_id_end":1
-    //     }}], function (err, userList) {
-    //     if(err) {
-    //         console.error(err.stack);
-    //     } else {
-    //         res.send(userList);
-    //     }
-    // });
 });
 
+/**
+ * Cerca l'utente che corrisponde all'email nella richiesta e se esiste lo ritorna
+ */
 router.get('/:email', function(req, res, next) {
     userModel.findOne({email:req.params.email}, '-password', function (err, user) {
         if(err) {
@@ -90,6 +88,10 @@ router.get('/:email', function(req, res, next) {
     });
 });
 
+/**
+ * Registra l'inizio di uno stage per l'utente che corrisponde all'email
+ * o non fa niente se lo stage è già stato effettuato
+ */
 router.post('/:email/stage/inizia', function (req, res, next) {
     userModel.findOne({email:req.params.email, 'stage_id_start.stage_id': req.body.stage_id},
         function (err, user) {
@@ -121,6 +123,10 @@ router.post('/:email/stage/inizia', function (req, res, next) {
         });
 });
 
+/**
+ * Registra la fine di uno stage per l'utente che corrisponde all'email
+ * o non fa niente se lo stage è già stato effettuato
+ */
 router.post('/:email/stage/termina', function (req, res, next) {
     userModel.findOne({email:req.params.email, 'stage_id_end.stage_id': req.body.stage_id},
         function (err, user) {
@@ -153,6 +159,9 @@ router.post('/:email/stage/termina', function (req, res, next) {
         });
 });
 
+/**
+ * Aggiunge un trofeo all'utente che corrisponde all'email
+ */
 router.post('/:email/trofeo/aggiungi', function (req, res, next) {
     userModel.findOneAndUpdate({email:req.params.email},
         {$addToSet: {trofei_id: req.body.trofeo_id}},

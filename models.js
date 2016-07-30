@@ -1,10 +1,16 @@
 /**
- * Created by marco on 06/05/16.
+ * StageITRun
+ * Progetto per insegnamento Reti Wireless
+ * @since Anno accademico 2015/2016
+ * @author Pezzutti Marco 1084411
  */
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+/**
+ * Schema del documento utente
+ */
 var userSchema = new Schema({
     nome : String,
     cognome : String,
@@ -24,6 +30,9 @@ var userSchema = new Schema({
     versionKey: false
 });
 
+/**
+ * Schema del documento trofeo
+ */
 var trofeiSchema = new Schema({
     _id : String,
     nome : String,
@@ -31,6 +40,9 @@ var trofeiSchema = new Schema({
     descrizione_lunga : String
 });
 
+/**
+ * Schema del documento stage
+ */
 var stageSchema = new Schema({
     _id : String,
     nome : String,
